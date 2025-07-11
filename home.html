@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuoteGalaxy Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    .category-card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+    }
+    body.dark .category-card {
+      background: #1e1e1e;
+      color: #fff;
+    }
+    .category-card:hover {
+      transform: translateY(-5px);
+    }
+    .category-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>QuoteGalaxy 🌌</h1>
+    <button onclick="toggleTheme()" id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
+
+  <main>
+    <h2 style="text-align: center; padding-top: 1rem;">Explore by Category</h2>
+    <div class="category-grid">
+      <div class="category-card" onclick="goToCategory('Inspirational')">
+        <div class="category-icon"><i class="fas fa-bolt"></i></div>
+        Inspirational
+      </div>
+      <div class="category-card" onclick="goToCategory('Life')">
+        <div class="category-icon"><i class="fas fa-heartbeat"></i></div>
+        Life
+      </div>
+      <div class="category-card" onclick="goToCategory('Love')">
+        <div class="category-icon"><i class="fas fa-heart"></i></div>
+        Love
+      </div>
+      <div class="category-card" onclick="goToCategory('Friendship')">
+        <div class="category-icon"><i class="fas fa-user-friends"></i></div>
+        Friendship
+      </div>
+      <div class="category-card" onclick="goToCategory('Happiness')">
+        <div class="category-icon"><i class="fas fa-smile"></i></div>
+        Happiness
+      </div>
+      <div class="category-card" onclick="goToCategory('Funny')">
+        <div class="category-icon"><i class="fas fa-laugh"></i></div>
+        Funny
+      </div>
+      <div class="category-card" onclick="goToCategory('Sad')">
+        <div class="category-icon"><i class="fas fa-sad-tear"></i></div>
+        Sad
+      </div>
+      <div class="category-card" onclick="goToCategory('Wisdom')">
+        <div class="category-icon"><i class="fas fa-brain"></i></div>
+        Wisdom
+      </div>
+      <div class="category-card" onclick="goToCategory('Strength')">
+        <div class="category-icon"><i class="fas fa-dumbbell"></i></div>
+        Strength
+      </div>
+      <div class="category-card" onclick="goToCategory('Nature')">
+        <div class="category-icon"><i class="fas fa-leaf"></i></div>
+        Nature
+      </div>
+      <div class="category-card" onclick="goToCategory('Music')">
+        <div class="category-icon"><i class="fas fa-music"></i></div>
+        Music
+      </div>
+      <div class="category-card" onclick="goToCategory('Random')">
+        <div class="category-icon"><i class="fas fa-random"></i></div>
+        Random
+      </div>
+    </div>
+  </main>
+
+  <script>
+    function goToCategory(category) {
+      localStorage.setItem('selectedCategory', category);
+      window.location.href = 'index.html';
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark');
+    }
+  </script>
+</body>
+</html>
