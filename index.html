@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuoteGalaxy 🌌</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <h1>QuoteGalaxy</h1>
+    <button onclick="toggleTheme()" id="themeToggle">
+      <i class="fas fa-moon"></i>
+    </button>
+  </header>
+
+  <main>
+    <div class="container"></div>
+  </main>
+
+  <section id="support">
+    <h2>Support QuoteGalaxy 💖</h2>
+    <img src="Screenshot_20250709_174427_FamApp.png" alt="UPI QR Code" class="qr-code" />
+    <p>Scan the code above to support this project!</p>
+  </section>
+
+  <footer>
+    <div id="disqus_thread"></div>
+  </footer>
+
+  <script src="full.js"></script>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+      document.body.classList.add('dark');
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    // Get selected category from localStorage
+    const selectedCategory = localStorage.getItem('selectedCategory');
+    if (selectedCategory) {
+      displayRandomQuote(selectedCategory);
+      localStorage.removeItem('selectedCategory');
+    } else {
+      displayRandomQuote();
+    }
+
+    // Disqus
+    var disqus_config = function () {
+      this.page.url = window.location.href;
+      this.page.identifier = 'quotegalaxy';
+    };
+    (function () {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://quotegalaxy.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+</body>
+</html>
